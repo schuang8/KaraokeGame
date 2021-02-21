@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "clean-server": "rm -rf ../server/app/static && rm -rf ../server/app/templates",
+    "copy-dist": "mkdirp ../server/app/static && mkdirp ../server/app/templates && cp -r ./dist/karaoke-game/* ../server/app/static && cp -r ./dist/karaoke-game/index.html ../server/app/templates/ && rm ../server/app/static/index.html",
+    "build-prod": "ng build --prod --baseHref=/static/ && npm run clean-server && npm run copy-dist && python ../server/run.py",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -37,6 +40,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "mkdirp": "^1.0.4",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
